@@ -1,3 +1,6 @@
+# 1.0.1
+- Admin: ACL-Berechtigungen für Lieferprofile (Anzeigen/Bearbeiten/Anlegen/Löschen) unter Einstellungen → Rollen; das Modul ist damit auch für Rollen ohne Vollzugriff gezielt freigebbar
+
 # 1.0.0
 - Erste Version: fixe monatliche Versandtermine und Bestellschluss je Lieferant (Lieferprofile)
 - Anzeige auf Produktdetailseite, im Warenkorb, Off-Canvas, Checkout, auf der Abschlussseite und in der Bestellhistorie

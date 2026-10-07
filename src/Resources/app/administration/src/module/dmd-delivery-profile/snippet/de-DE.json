@@ -56,5 +56,12 @@
             "-1": "Letzter",
             "-2": "Vorletzter"
         }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "dmd_delivery_profile": {
+                "label": "Monats-Lieferprofile"
+            }
+        }
     }
 }

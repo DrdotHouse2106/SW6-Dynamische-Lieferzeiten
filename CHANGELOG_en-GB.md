@@ -1,3 +1,6 @@
+# 1.0.1
+- Admin: ACL permissions for delivery profiles (view/edit/create/delete) under Settings → Roles, so the module can be granted to roles without full admin access
+
 # 1.0.0
 - First release: fixed monthly shipping dates and order deadlines per supplier (delivery profiles)
 - Display on product detail page, cart, off-canvas cart, checkout, finish page and order history

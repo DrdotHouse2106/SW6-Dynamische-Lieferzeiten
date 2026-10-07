@@ -1,3 +1,4 @@
+import './acl';
 import './page/dmd-delivery-profile-list';
 import './page/dmd-delivery-profile-detail';
 
@@ -24,6 +25,7 @@ Shopware.Module.register('dmd-delivery-profile', {
             path: 'index',
             meta: {
                 parentPath: 'sw.settings.index.plugins',
+                privilege: 'dmd_delivery_profile.viewer',
             },
         },
         detail: {
@@ -31,6 +33,7 @@ Shopware.Module.register('dmd-delivery-profile', {
             path: 'detail/:id',
             meta: {
                 parentPath: 'dmd.delivery.profile.index',
+                privilege: 'dmd_delivery_profile.viewer',
             },
         },
         create: {
@@ -38,6 +41,7 @@ Shopware.Module.register('dmd-delivery-profile', {
             path: 'create',
             meta: {
                 parentPath: 'dmd.delivery.profile.index',
+                privilege: 'dmd_delivery_profile.creator',
             },
         },
     },
@@ -47,5 +51,6 @@ Shopware.Module.register('dmd-delivery-profile', {
         to: 'dmd.delivery.profile.index',
         icon: 'regular-calendar',
         label: 'dmd-delivery-profile.general.mainMenuItemGeneral',
+        privilege: 'dmd_delivery_profile.viewer',
     },
 });
