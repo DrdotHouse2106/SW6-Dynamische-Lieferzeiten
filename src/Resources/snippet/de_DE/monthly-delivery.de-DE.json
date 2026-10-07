@@ -1,0 +1,20 @@
+{
+    "monthlyDelivery": {
+        "shipDate": "Nächster fixer Versandtermin: <strong>%weekday%, %date%</strong>",
+        "deadline": "(Bestellschluss für diese Lieferung: %weekday%, %date%, %time% Uhr)",
+        "profile": "Lieferant: %name%",
+        "summaryTitleConfirm": "Ihre Bestellung enthält Artikel mit fixem Versandtermin:",
+        "summaryTitleFinish": "Folgende Artikel Ihrer Bestellung werden zum fixen Termin versendet:",
+        "summaryLine": "Versand am %weekday%, %date%",
+        "summaryPartial": "Artikel mit unterschiedlichen Versandterminen werden ggf. in Teillieferungen versendet.",
+        "weekday": {
+            "1": "Montag",
+            "2": "Dienstag",
+            "3": "Mittwoch",
+            "4": "Donnerstag",
+            "5": "Freitag",
+            "6": "Samstag",
+            "7": "Sonntag"
+        }
+    }
+}

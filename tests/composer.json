@@ -1,0 +1,6 @@
+{
+    "description": "Standalone-Testumgebung für die Berechnungslogik (ohne Shopware): cd tests && composer install && vendor/bin/phpunit -c ../phpunit.xml.dist",
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    }
+}

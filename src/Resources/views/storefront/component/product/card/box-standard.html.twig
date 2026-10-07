@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{# Optional (Plugin-Konfiguration „Versandtermin in Produkt-Listings anzeigen“) #}
+{% block component_product_box_price %}
+    {% if config('MonthlyDeliveryPlugin.config.showInListing') and product.extensions.monthlyDelivery is defined and product.extensions.monthlyDelivery %}
+        {% block component_product_box_monthly_delivery %}
+            {% sw_include '@MonthlyDeliveryPlugin/storefront/component/monthly-delivery/info.html.twig' with {
+                monthlyDelivery: product.extensions.monthlyDelivery,
+                variant: 'listing'
+            } %}
+        {% endblock %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

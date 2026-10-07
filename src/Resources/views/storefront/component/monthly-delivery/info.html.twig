@@ -1,0 +1,48 @@
+{#
+    Gemeinsame Ausgabe des monatlichen Liefertermins.
+
+    Parameter:
+      monthlyDelivery – Array/Struct aus DeliverySchedule::toArray()
+                        (product.extensions.monthlyDelivery oder lineItem.payload.monthlyDelivery)
+      variant         – 'detail' | 'line-item' | 'listing' (optional, Standard: 'detail')
+#}
+{% block monthly_delivery_info %}
+    {% set variant = variant|default('detail') %}
+    {% set pluginConfig = 'MonthlyDeliveryPlugin.config.' %}
+
+    {% if monthlyDelivery and monthlyDelivery.shipDateFormatted is defined %}
+        <div class="monthly-delivery-info monthly-delivery-info--{{ variant }}">
+            {% block monthly_delivery_info_ship_date %}
+                <p class="delivery-information monthly-delivery-ship-date mb-0">
+                    {% if variant == 'detail' %}
+                        <span class="delivery-status-indicator bg-success"></span>
+                    {% endif %}
+                    {{ 'monthlyDelivery.shipDate'|trans({
+                        '%weekday%': ('monthlyDelivery.weekday.' ~ monthlyDelivery.shipWeekday)|trans,
+                        '%date%': monthlyDelivery.shipDateFormatted
+                    })|sw_sanitize }}
+                </p>
+            {% endblock %}
+
+            {% if variant != 'listing' and config(pluginConfig ~ 'showDeadline') is not same as(false) %}
+                {% block monthly_delivery_info_deadline %}
+                    <p class="monthly-delivery-deadline text-muted small mb-0">
+                        {{ 'monthlyDelivery.deadline'|trans({
+                            '%weekday%': ('monthlyDelivery.weekday.' ~ monthlyDelivery.deadlineWeekday)|trans,
+                            '%date%': monthlyDelivery.deadlineFormatted,
+                            '%time%': monthlyDelivery.deadlineTime
+                        })|sw_sanitize }}
+                    </p>
+                {% endblock %}
+            {% endif %}
+
+            {% if config(pluginConfig ~ 'showProfileName') and monthlyDelivery.profileName %}
+                {% block monthly_delivery_info_profile %}
+                    <p class="monthly-delivery-profile text-muted small mb-0">
+                        {{ 'monthlyDelivery.profile'|trans({ '%name%': monthlyDelivery.profileName })|sw_sanitize }}
+                    </p>
+                {% endblock %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,129 @@
+{% block dmd_delivery_profile_detail %}
+<sw-page class="dmd-delivery-profile-detail">
+    {% block dmd_delivery_profile_detail_smart_bar_header %}
+    <template #smart-bar-header>
+        <h2>{{ profile?.name || $tc('dmd-delivery-profile.detail.titleNew') }}</h2>
+    </template>
+    {% endblock %}
+
+    {% block dmd_delivery_profile_detail_smart_bar_actions %}
+    <template #smart-bar-actions>
+        <sw-button :router-link="{ name: 'dmd.delivery.profile.index' }">
+            {{ $tc('global.default.cancel') }}
+        </sw-button>
+
+        <sw-button-process
+            variant="primary"
+            :is-loading="isLoading"
+            :process-success="isSaveSuccessful"
+            @process-finish="saveFinish"
+            @click="onSave"
+        >
+            {{ $tc('global.default.save') }}
+        </sw-button-process>
+    </template>
+    {% endblock %}
+
+    {% block dmd_delivery_profile_detail_content %}
+    <template #content>
+        <sw-card-view>
+            <template v-if="profile">
+                {% block dmd_delivery_profile_detail_card_general %}
+                <sw-card
+                    position-identifier="dmd-delivery-profile-general"
+                    :title="$tc('dmd-delivery-profile.detail.cardGeneral')"
+                    :is-loading="isLoading"
+                >
+                    <sw-switch-field
+                        v-model:value="profile.active"
+                        :label="$tc('dmd-delivery-profile.detail.labelActive')"
+                        :help-text="$tc('dmd-delivery-profile.detail.helpActive')"
+                        bordered
+                    />
+
+                    <sw-text-field
+                        v-model:value="profile.name"
+                        :label="$tc('dmd-delivery-profile.detail.labelName')"
+                        :placeholder="$tc('dmd-delivery-profile.detail.placeholderName')"
+                        required
+                    />
+
+                    <sw-text-field
+                        v-model:value="profile.technicalName"
+                        :label="$tc('dmd-delivery-profile.detail.labelTechnicalName')"
+                        :help-text="$tc('dmd-delivery-profile.detail.helpTechnicalName')"
+                        :error="isValidTechnicalName || !profile.technicalName ? null : { detail: $tc('dmd-delivery-profile.detail.errorTechnicalName') }"
+                        required
+                    />
+
+                    <sw-textarea-field
+                        v-model:value="profile.description"
+                        :label="$tc('dmd-delivery-profile.detail.labelDescription')"
+                    />
+                </sw-card>
+                {% endblock %}
+
+                {% block dmd_delivery_profile_detail_card_rule %}
+                <sw-card
+                    position-identifier="dmd-delivery-profile-rule"
+                    :title="$tc('dmd-delivery-profile.detail.cardRule')"
+                    :is-loading="isLoading"
+                >
+                    <sw-container columns="1fr 1fr" gap="0 30px">
+                        <sw-single-select
+                            v-model:value="profile.arrivalOccurrence"
+                            :label="$tc('dmd-delivery-profile.detail.labelArrivalOccurrence')"
+                            :options="occurrenceOptions"
+                            required
+                        />
+
+                        <sw-single-select
+                            v-model:value="profile.arrivalWeekday"
+                            :label="$tc('dmd-delivery-profile.detail.labelArrivalWeekday')"
+                            :help-text="$tc('dmd-delivery-profile.detail.helpArrival')"
+                            :options="weekdayOptions"
+                            required
+                        />
+
+                        <sw-number-field
+                            v-model:value="profile.deadlineOffsetDays"
+                            number-type="int"
+                            :min="0"
+                            :max="27"
+                            :label="$tc('dmd-delivery-profile.detail.labelDeadlineOffsetDays')"
+                            :help-text="$tc('dmd-delivery-profile.detail.helpDeadlineOffsetDays')"
+                            required
+                        />
+
+                        <sw-text-field
+                            v-model:value="profile.deadlineTime"
+                            :label="$tc('dmd-delivery-profile.detail.labelDeadlineTime')"
+                            placeholder="23:59:59"
+                            :error="isValidDeadlineTime ? null : { detail: $tc('dmd-delivery-profile.detail.errorDeadlineTime') }"
+                            required
+                        />
+
+                        <sw-single-select
+                            v-model:value="profile.shipWeekday"
+                            :label="$tc('dmd-delivery-profile.detail.labelShipWeekday')"
+                            :help-text="$tc('dmd-delivery-profile.detail.helpShipWeekday')"
+                            :options="weekdayOptions"
+                            required
+                        />
+
+                        <sw-text-field
+                            v-model:value="profile.excludedMonths"
+                            :label="$tc('dmd-delivery-profile.detail.labelExcludedMonths')"
+                            :help-text="$tc('dmd-delivery-profile.detail.helpExcludedMonths')"
+                            :error="isValidExcludedMonths ? null : { detail: $tc('dmd-delivery-profile.detail.errorExcludedMonths') }"
+                            placeholder="8, 12"
+                        />
+                    </sw-container>
+                </sw-card>
+                {% endblock %}
+            </template>
+        </sw-card-view>
+    </template>
+    {% endblock %}
+</sw-page>
+{% endblock %}

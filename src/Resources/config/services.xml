@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Entity: Lieferprofile je Lieferant -->
+        <service id="DrDotHouse\MonthlyDelivery\Core\Content\DeliveryProfile\DeliveryProfileDefinition">
+            <tag name="shopware.entity.definition" entity="dmd_delivery_profile"/>
+        </service>
+
+        <!-- Berechnung & Auflösung -->
+        <service id="DrDotHouse\MonthlyDelivery\Service\DeliveryCalculatorService" public="true"/>
+
+        <service id="DrDotHouse\MonthlyDelivery\Service\DeliveryProfileResolver">
+            <argument type="service" id="dmd_delivery_profile.repository"/>
+            <argument type="service" id="product_manufacturer.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="logger"/>
+            <tag name="kernel.reset" method="reset"/>
+        </service>
+
+        <service id="DrDotHouse\MonthlyDelivery\Service\MonthlyDeliveryService" public="true">
+            <argument type="service" id="DrDotHouse\MonthlyDelivery\Service\DeliveryCalculatorService"/>
+            <argument type="service" id="DrDotHouse\MonthlyDelivery\Service\DeliveryProfileResolver"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="kernel.reset" method="reset"/>
+        </service>
+
+        <service id="DrDotHouse\MonthlyDelivery\Service\CustomFieldInstaller">
+            <argument type="service" id="custom_field_set.repository"/>
+        </service>
+
+        <!-- Storefront -->
+        <service id="DrDotHouse\MonthlyDelivery\Subscriber\ProductPageSubscriber">
+            <argument type="service" id="DrDotHouse\MonthlyDelivery\Service\MonthlyDeliveryService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="DrDotHouse\MonthlyDelivery\Subscriber\HttpCacheSubscriber">
+            <argument type="service" id="DrDotHouse\MonthlyDelivery\Service\MonthlyDeliveryService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Warenkorb: nach ProductCartProcessor (5000) -->
+        <service id="DrDotHouse\MonthlyDelivery\Checkout\Cart\MonthlyDeliveryCartProcessor">
+            <argument type="service" id="DrDotHouse\MonthlyDelivery\Service\MonthlyDeliveryService"/>
+            <argument type="service" id="product.repository"/>
+            <tag name="shopware.cart.processor" priority="4900"/>
+        </service>
+    </services>
+</container>

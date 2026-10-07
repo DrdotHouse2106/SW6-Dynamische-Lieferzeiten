@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{#
+    Warenkorb, Off-Canvas-Warenkorb, Checkout-Bestätigung, Abschlussseite und Bestellhistorie:
+    Ausgabe des Versandtermins direkt am Artikel. Die Daten stammen aus dem Line-Item-Payload
+    (bei Bestellungen: order_line_item.payload = zum Bestellzeitpunkt zugesagter Termin).
+#}
+{% block component_line_item_type_product_number %}
+    {{ parent() }}
+
+    {% if lineItem.payload.monthlyDelivery is defined and lineItem.payload.monthlyDelivery %}
+        {% block component_line_item_type_product_monthly_delivery %}
+            <div class="line-item-monthly-delivery">
+                {% sw_include '@MonthlyDeliveryPlugin/storefront/component/monthly-delivery/info.html.twig' with {
+                    monthlyDelivery: lineItem.payload.monthlyDelivery,
+                    variant: 'line-item'
+                } %}
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

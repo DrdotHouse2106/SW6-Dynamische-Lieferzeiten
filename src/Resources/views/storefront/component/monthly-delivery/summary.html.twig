@@ -1,0 +1,45 @@
+{#
+    Zusammenfassung der fixen Versandtermine für Checkout-Bestätigung und Abschlussseite.
+
+    Parameter:
+      lineItems – Warenkorb- oder Bestellpositionen (Payload-Schlüssel monthlyDelivery)
+      variant   – 'confirm' | 'finish'
+#}
+{% block monthly_delivery_summary %}
+    {% set monthlyDeliveryDates = {} %}
+    {% for item in lineItems %}
+        {% set md = item.payload.monthlyDelivery|default(null) %}
+        {% if md and md.shipDate is defined %}
+            {% set monthlyDeliveryDates = monthlyDeliveryDates|merge({ (md.shipDate): md }) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if monthlyDeliveryDates is not empty %}
+        {% set monthlyDeliveryDates = monthlyDeliveryDates|sort((a, b) => a.shipDate <=> b.shipDate) %}
+        {% set monthlyDeliveryTitle = variant|default('confirm') == 'finish' ? 'monthlyDelivery.summaryTitleFinish' : 'monthlyDelivery.summaryTitleConfirm' %}
+
+        {% set monthlyDeliveryContent %}
+            <p class="mb-1"><strong>{{ monthlyDeliveryTitle|trans|sw_sanitize }}</strong></p>
+            <ul class="mb-0">
+                {% for md in monthlyDeliveryDates %}
+                    <li>
+                        {{ 'monthlyDelivery.summaryLine'|trans({
+                            '%weekday%': ('monthlyDelivery.weekday.' ~ md.shipWeekday)|trans,
+                            '%date%': md.shipDateFormatted
+                        })|sw_sanitize }}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if monthlyDeliveryDates|length > 1 %}
+                <p class="mb-0 mt-1 small">{{ 'monthlyDelivery.summaryPartial'|trans|sw_sanitize }}</p>
+            {% endif %}
+        {% endset %}
+
+        <div class="monthly-delivery-summary mb-3">
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: 'info',
+                content: monthlyDeliveryContent
+            } %}
+        </div>
+    {% endif %}
+{% endblock %}

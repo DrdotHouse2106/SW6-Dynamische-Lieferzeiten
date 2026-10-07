@@ -1,0 +1,8 @@
+/vendor/
+/tests/vendor/
+/tests/composer.lock
+/composer.lock
+/.phpunit.cache/
+/.phpunit.result.cache
+/node_modules/
+/src/Resources/app/administration/node_modules/

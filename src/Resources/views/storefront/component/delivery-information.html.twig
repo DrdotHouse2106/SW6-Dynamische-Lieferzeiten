@@ -1,0 +1,35 @@
+{% sw_extends '@Storefront/storefront/component/delivery-information.html.twig' %}
+
+{#
+    Produktdetailseite (klassische Buy-Widget-Seite und CMS-Buy-Box):
+    Ersetzt die Standard-Lieferzeit (deliveryTime/restockTime aus der WaWi) durch den
+    berechneten Versandtermin, sobald am Produkt das Zusatzfeld custom_supplier_monthly_delivery aktiv ist.
+    Abverkauf/ausverkauft, inaktive Produkte und Vorbestellungen behalten die Standardanzeige.
+#}
+{% block component_delivery_information %}
+    {% set monthlyDeliveryProduct = (page is defined and page.product is defined) ? page.product : (product|default(null)) %}
+    {% set monthlyDelivery = monthlyDeliveryProduct ? monthlyDeliveryProduct.extensions.monthlyDelivery|default(null) : null %}
+    {% set monthlyDeliveryBlocked = monthlyDeliveryProduct and (
+        not monthlyDeliveryProduct.active
+        or (monthlyDeliveryProduct.isCloseout and monthlyDeliveryProduct.stock < monthlyDeliveryProduct.minPurchase)
+        or (monthlyDeliveryProduct.releaseDate and monthlyDeliveryProduct.releaseDate|date('U') > 'now'|date('U'))
+    ) %}
+
+    {% if monthlyDelivery and not monthlyDeliveryBlocked %}
+        <div class="product-delivery-information">
+            {% if monthlyDeliveryProduct.shippingFree %}
+                {{ block('component_delivery_information_shipping_free') }}
+            {% endif %}
+
+            {% block component_delivery_information_monthly %}
+                <link itemprop="availability" href="https://schema.org/BackOrder">
+                {% sw_include '@MonthlyDeliveryPlugin/storefront/component/monthly-delivery/info.html.twig' with {
+                    monthlyDelivery: monthlyDelivery,
+                    variant: 'detail'
+                } %}
+            {% endblock %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

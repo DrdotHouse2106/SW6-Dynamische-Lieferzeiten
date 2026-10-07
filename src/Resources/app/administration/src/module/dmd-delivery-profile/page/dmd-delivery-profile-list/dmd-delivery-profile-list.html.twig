@@ -1,0 +1,69 @@
+{% block dmd_delivery_profile_list %}
+<sw-page class="dmd-delivery-profile-list">
+    {% block dmd_delivery_profile_list_search_bar %}
+    <template #search-bar>
+        <sw-search-bar
+            initial-search-type="dmd_delivery_profile"
+            :initial-search="term"
+            @search="onSearch"
+        />
+    </template>
+    {% endblock %}
+
+    {% block dmd_delivery_profile_list_smart_bar_header %}
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('dmd-delivery-profile.general.mainMenuItemGeneral') }}
+            <span v-if="!isLoading">({{ total }})</span>
+        </h2>
+    </template>
+    {% endblock %}
+
+    {% block dmd_delivery_profile_list_smart_bar_actions %}
+    <template #smart-bar-actions>
+        <sw-button
+            variant="primary"
+            :router-link="{ name: 'dmd.delivery.profile.create' }"
+        >
+            {{ $tc('dmd-delivery-profile.list.buttonAdd') }}
+        </sw-button>
+    </template>
+    {% endblock %}
+
+    {% block dmd_delivery_profile_list_content %}
+    <template #content>
+        <sw-entity-listing
+            v-if="profiles"
+            :items="profiles"
+            :repository="profileRepository"
+            :columns="columns"
+            :is-loading="isLoading"
+            :show-selection="true"
+            :sort-by="sortBy"
+            :sort-direction="sortDirection"
+            detail-route="dmd.delivery.profile.detail"
+            @update-records="getList"
+        >
+            <template #column-rule="{ item }">
+                {{ ruleSummary(item) }}
+            </template>
+
+            <template #column-active="{ item }">
+                <sw-icon
+                    v-if="item.active"
+                    name="regular-checkmark-xs"
+                    small
+                    class="is--active"
+                />
+                <sw-icon
+                    v-else
+                    name="regular-times-s"
+                    small
+                    class="is--inactive"
+                />
+            </template>
+        </sw-entity-listing>
+    </template>
+    {% endblock %}
+</sw-page>
+{% endblock %}

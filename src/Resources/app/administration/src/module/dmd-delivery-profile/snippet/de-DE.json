@@ -1,0 +1,60 @@
+{
+    "dmd-delivery-profile": {
+        "general": {
+            "mainMenuItemGeneral": "Monats-Lieferprofile",
+            "descriptionTextModule": "Fixe monatliche Versandtermine je Lieferant verwalten"
+        },
+        "list": {
+            "buttonAdd": "Lieferprofil anlegen",
+            "columnName": "Name",
+            "columnTechnicalName": "Technischer Name",
+            "columnRule": "Regel",
+            "columnActive": "Aktiv",
+            "ruleSummary": "Eintreffen: {occurrence} {arrivalWeekday} · Bestellschluss: {offset} Tage vorher, {time} Uhr · Versand: {shipWeekday} danach"
+        },
+        "detail": {
+            "titleNew": "Neues Lieferprofil",
+            "cardGeneral": "Allgemein",
+            "cardRule": "Berechnungsregel",
+            "labelActive": "Aktiv",
+            "helpActive": "Inaktive Profile blenden den fixen Versandtermin für alle zugeordneten Produkte aus – es wird wieder die Standard-Lieferzeit angezeigt.",
+            "labelName": "Name (z. B. Lieferant)",
+            "placeholderName": "z. B. Lieferant Müller GmbH",
+            "labelTechnicalName": "Technischer Name",
+            "helpTechnicalName": "Eindeutiger Schlüssel (nur Kleinbuchstaben, Ziffern, - und _). Kann von der WaWi (ERPNext/WeClapp) in das Zusatzfeld des Produkts oder Herstellers geschrieben werden.",
+            "errorTechnicalName": "Nur Kleinbuchstaben, Ziffern, - und _ erlaubt.",
+            "labelDescription": "Interne Beschreibung",
+            "labelArrivalOccurrence": "Eintreffen beim Shop (Vorkommen im Monat)",
+            "labelArrivalWeekday": "Eintreffen beim Shop (Wochentag)",
+            "helpArrival": "Standard: letzter Mittwoch des Monats.",
+            "labelDeadlineOffsetDays": "Bestellschluss: Tage vor dem Eintreffen",
+            "helpDeadlineOffsetDays": "Standard: 7 Tage (= vorletzter Mittwoch).",
+            "labelDeadlineTime": "Bestellschluss: Uhrzeit",
+            "errorDeadlineTime": "Bitte im Format HH:MM oder HH:MM:SS angeben.",
+            "labelShipWeekday": "Versand an den Kunden: nächster Wochentag nach dem Eintreffen",
+            "helpShipWeekday": "Standard: Montag nach dem Eintreffen.",
+            "labelExcludedMonths": "Monate ohne Lieferung",
+            "helpExcludedMonths": "Kommagetrennte Monatszahlen (1–12), z. B. „8, 12“ für Betriebsferien im August und Dezember. Diese Monate werden übersprungen.",
+            "errorExcludedMonths": "Nur Monatszahlen von 1 bis 12, nicht alle Monate.",
+            "errorValidation": "Bitte prüfen Sie die markierten Felder.",
+            "errorSave": "Das Lieferprofil konnte nicht gespeichert werden. Ist der technische Name eindeutig?"
+        },
+        "weekday": {
+            "1": "Montag",
+            "2": "Dienstag",
+            "3": "Mittwoch",
+            "4": "Donnerstag",
+            "5": "Freitag",
+            "6": "Samstag",
+            "7": "Sonntag"
+        },
+        "occurrence": {
+            "1": "Erster",
+            "2": "Zweiter",
+            "3": "Dritter",
+            "4": "Vierter",
+            "-1": "Letzter",
+            "-2": "Vorletzter"
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "name": "drdothouse/sw6-monthly-delivery",
+    "description": "Dynamische, monatliche Versand- und Bestellschluss-Termine je Lieferant für Shopware 6.6",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DrdotHouse"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "shopware/core": "~6.6.0",
+        "shopware/storefront": "~6.6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DrDotHouse\\MonthlyDelivery\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DrDotHouse\\MonthlyDelivery\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "DrDotHouse\\MonthlyDelivery\\MonthlyDeliveryPlugin",
+        "label": {
+            "de-DE": "Dynamische Monats-Lieferzeiten",
+            "en-GB": "Dynamic monthly delivery dates"
+        },
+        "description": {
+            "de-DE": "Berechnet je Lieferant den nächsten fixen Versandtermin und Bestellschluss und zeigt ihn auf Produktseite, im Warenkorb, im Checkout und in der Bestellung an – unabhängig von den WaWi-Feldern Lieferzeit und Wiederauffüllzeit.",
+            "en-GB": "Calculates the next fixed shipping date and order deadline per supplier and shows it on the product page, in the cart, checkout and order – independent of the ERP-synced delivery time fields."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten",
+            "en-GB": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten"
+        },
+        "supportLink": {
+            "de-DE": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten/issues",
+            "en-GB": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten/issues"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}

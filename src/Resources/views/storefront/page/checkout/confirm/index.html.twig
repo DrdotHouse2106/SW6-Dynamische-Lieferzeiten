@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_confirm_product_table %}
+    {% if config('MonthlyDeliveryPlugin.config.showCheckoutSummary') is not same as(false) %}
+        {% sw_include '@MonthlyDeliveryPlugin/storefront/component/monthly-delivery/summary.html.twig' with {
+            lineItems: page.cart.lineItems,
+            variant: 'confirm'
+        } %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

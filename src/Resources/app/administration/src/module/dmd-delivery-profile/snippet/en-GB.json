@@ -1,0 +1,60 @@
+{
+    "dmd-delivery-profile": {
+        "general": {
+            "mainMenuItemGeneral": "Monthly delivery profiles",
+            "descriptionTextModule": "Manage fixed monthly shipping dates per supplier"
+        },
+        "list": {
+            "buttonAdd": "Add delivery profile",
+            "columnName": "Name",
+            "columnTechnicalName": "Technical name",
+            "columnRule": "Rule",
+            "columnActive": "Active",
+            "ruleSummary": "Arrival: {occurrence} {arrivalWeekday} · Deadline: {offset} days before, {time} · Shipping: following {shipWeekday}"
+        },
+        "detail": {
+            "titleNew": "New delivery profile",
+            "cardGeneral": "General",
+            "cardRule": "Calculation rule",
+            "labelActive": "Active",
+            "helpActive": "Inactive profiles hide the fixed shipping date for all assigned products – the default delivery time is shown again.",
+            "labelName": "Name (e.g. supplier)",
+            "placeholderName": "e.g. Supplier Ltd.",
+            "labelTechnicalName": "Technical name",
+            "helpTechnicalName": "Unique key (lowercase letters, digits, - and _ only). Can be written by the ERP (ERPNext/WeClapp) into the custom field of the product or manufacturer.",
+            "errorTechnicalName": "Only lowercase letters, digits, - and _ are allowed.",
+            "labelDescription": "Internal description",
+            "labelArrivalOccurrence": "Arrival at shop (occurrence in month)",
+            "labelArrivalWeekday": "Arrival at shop (weekday)",
+            "helpArrival": "Default: last Wednesday of the month.",
+            "labelDeadlineOffsetDays": "Order deadline: days before arrival",
+            "helpDeadlineOffsetDays": "Default: 7 days (= second-to-last Wednesday).",
+            "labelDeadlineTime": "Order deadline: time",
+            "errorDeadlineTime": "Please use the format HH:MM or HH:MM:SS.",
+            "labelShipWeekday": "Shipping to customer: next weekday after arrival",
+            "helpShipWeekday": "Default: Monday after arrival.",
+            "labelExcludedMonths": "Months without delivery",
+            "helpExcludedMonths": "Comma-separated month numbers (1–12), e.g. \"8, 12\" for company holidays in August and December. These months are skipped.",
+            "errorExcludedMonths": "Only month numbers from 1 to 12, not all months.",
+            "errorValidation": "Please check the highlighted fields.",
+            "errorSave": "The delivery profile could not be saved. Is the technical name unique?"
+        },
+        "weekday": {
+            "1": "Monday",
+            "2": "Tuesday",
+            "3": "Wednesday",
+            "4": "Thursday",
+            "5": "Friday",
+            "6": "Saturday",
+            "7": "Sunday"
+        },
+        "occurrence": {
+            "1": "First",
+            "2": "Second",
+            "3": "Third",
+            "4": "Fourth",
+            "-1": "Last",
+            "-2": "Second-to-last"
+        }
+    }
+}

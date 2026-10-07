@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Monthly delivery dates</title>
+        <title lang="de-DE">Monatliche Liefertermine</title>
+
+        <component name="sw-entity-single-select">
+            <name>defaultProfile</name>
+            <entity>dmd_delivery_profile</entity>
+            <labelProperty>name</labelProperty>
+            <label>Default delivery profile</label>
+            <label lang="de-DE">Standard-Lieferprofil</label>
+            <helpText>Used for activated products if neither the product nor its manufacturer/supplier has a delivery profile. If empty, the built-in rule applies (last Wednesday / second-to-last Wednesday / following Monday).</helpText>
+            <helpText lang="de-DE">Wird für aktivierte Produkte verwendet, wenn weder am Produkt noch am Hersteller/Lieferanten ein Lieferprofil hinterlegt ist. Leer = eingebaute Regel (letzter Mittwoch / vorletzter Mittwoch / Montag danach).</helpText>
+        </component>
+
+        <input-field type="single-select">
+            <name>timezone</name>
+            <label>Timezone for the deadline</label>
+            <label lang="de-DE">Zeitzone für den Bestellschluss</label>
+            <defaultValue>Europe/Berlin</defaultValue>
+            <options>
+                <option><id>Europe/Berlin</id><name>Europe/Berlin</name></option>
+                <option><id>Europe/Vienna</id><name>Europe/Vienna</name></option>
+                <option><id>Europe/Zurich</id><name>Europe/Zurich</name></option>
+                <option><id>UTC</id><name>UTC</name></option>
+            </options>
+        </input-field>
+
+        <input-field type="bool">
+            <name>limitHttpCache</name>
+            <label>Limit HTTP cache lifetime until the next order deadline</label>
+            <label lang="de-DE">HTTP-Cache-Lebensdauer bis zum nächsten Bestellschluss begrenzen</label>
+            <defaultValue>true</defaultValue>
+            <helpText>Prevents cached pages from showing an outdated shipping date after the order deadline has passed.</helpText>
+            <helpText lang="de-DE">Verhindert, dass gecachte Seiten nach Ablauf des Bestellschlusses noch den alten Versandtermin anzeigen.</helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Storefront display</title>
+        <title lang="de-DE">Anzeige in der Storefront</title>
+
+        <input-field type="bool">
+            <name>showDeadline</name>
+            <label>Show order deadline</label>
+            <label lang="de-DE">Bestellschluss anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showProfileName</name>
+            <label>Show delivery profile (supplier) name</label>
+            <label lang="de-DE">Name des Lieferprofils (Lieferant) anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showInListing</name>
+            <label>Show shipping date in product listings</label>
+            <label lang="de-DE">Versandtermin in Produkt-Listings anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showCheckoutSummary</name>
+            <label>Show summary on checkout confirm and finish page</label>
+            <label lang="de-DE">Zusammenfassung auf Bestätigungs- und Abschlussseite anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+</config>

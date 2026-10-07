@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/delivery-date.html.twig' %}
+
+{# Standard-Lieferdatum (aus deliveryTime) für Artikel mit fixem Monatstermin ausblenden – der Termin wird stattdessen am Artikel angezeigt. #}
+{% block component_line_item_delivery_date %}
+    {% if not (lineItem.payload.monthlyDelivery is defined and lineItem.payload.monthlyDelivery) %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
