@@ -26,6 +26,9 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
  */
 class MonthlyDeliveryCartProcessor implements CartProcessorInterface
 {
+    /**
+     * @param EntityRepository<ProductCollection> $productRepository
+     */
     public function __construct(
         private readonly MonthlyDeliveryService $monthlyDeliveryService,
         private readonly EntityRepository $productRepository,

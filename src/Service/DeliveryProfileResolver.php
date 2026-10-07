@@ -40,6 +40,10 @@ class DeliveryProfileResolver implements ResetInterface
     /** @var array<string, array<string, mixed>> */
     private array $manufacturerCustomFields = [];
 
+    /**
+     * @param EntityRepository<DeliveryProfileCollection> $profileRepository
+     * @param EntityRepository<ProductManufacturerCollection> $manufacturerRepository
+     */
     public function __construct(
         private readonly EntityRepository $profileRepository,
         private readonly EntityRepository $manufacturerRepository,

@@ -6,6 +6,7 @@ use DrDotHouse\MonthlyDelivery\Core\Content\DeliveryProfile\DeliveryProfileDefin
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\System\CustomField\Aggregate\CustomFieldSet\CustomFieldSetCollection;
 use Shopware\Core\System\CustomField\CustomFieldTypes;
 
 /**
@@ -30,6 +31,9 @@ class CustomFieldInstaller
     /** Lieferprofil am Hersteller/Lieferanten (ID oder technischer Name) */
     public const FIELD_MANUFACTURER_PROFILE = 'custom_supplier_monthly_delivery_manufacturer_profile';
 
+    /**
+     * @param EntityRepository<CustomFieldSetCollection> $customFieldSetRepository
+     */
     public function __construct(private readonly EntityRepository $customFieldSetRepository)
     {
     }

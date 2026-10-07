@@ -10,6 +10,7 @@ use Shopware\Core\Framework\Plugin\Context\ActivateContext;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
 use Shopware\Core\Framework\Plugin\Context\UpdateContext;
+use Shopware\Core\System\CustomField\Aggregate\CustomFieldSet\CustomFieldSetCollection;
 
 class MonthlyDeliveryPlugin extends Plugin
 {
@@ -57,7 +58,7 @@ class MonthlyDeliveryPlugin extends Plugin
 
     private function getCustomFieldInstaller(): CustomFieldInstaller
     {
-        /** @var EntityRepository $customFieldSetRepository */
+        /** @var EntityRepository<CustomFieldSetCollection> $customFieldSetRepository */
         $customFieldSetRepository = $this->container->get('custom_field_set.repository');
 
         return new CustomFieldInstaller($customFieldSetRepository);
