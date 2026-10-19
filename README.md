@@ -1,5 +1,7 @@
 # Dynamische Monats-Lieferzeiten für Shopware 6.6
 
+[![Spendier mir einen Kaffee](https://img.shields.io/badge/☕_Spendier_mir_einen_Kaffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
+
 *[English version](README.en.md)*
 
 Shopware-6-Plugin (`MonthlyDeliveryPlugin`), das für Produkte bestimmter Lieferanten einen **fixen monatlichen Versandtermin** und den dazugehörigen **Bestellschluss** berechnet. Beides wird angezeigt auf der Produktdetailseite, im Warenkorb, im Off-Canvas-Warenkorb, im Checkout, auf der Abschlussseite, in der Bestellhistorie und in E-Mails.
@@ -255,3 +257,10 @@ tests/Unit/DeliveryCalculatorServiceTest.php
 ## Lizenz
 
 MIT – siehe [LICENSE](LICENSE).
+
+## ☕ Unterstützen
+
+Wenn dir dieses Projekt Arbeit erspart, freue ich mich über einen Kaffee – freiwillig, ohne
+Support-Anspruch, einfach eine nette Geste:
+
+[![Spendier mir einen Kaffee](https://img.shields.io/badge/☕_Spendier_mir_einen_Kaffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)

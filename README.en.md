@@ -1,5 +1,7 @@
 # Dynamic monthly delivery dates for Shopware 6.6
 
+[![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
+
 *[Deutsche Version](README.md) (primary documentation)*
 
 Shopware 6 plugin (`MonthlyDeliveryPlugin`) that calculates a **fixed monthly shipping date** and the corresponding **order deadline** for products of specific suppliers. Both are shown on the product detail page, in the cart and off-canvas cart, on the checkout confirm and finish pages, in the order history and in emails.
@@ -72,3 +74,10 @@ cd tests && composer install && vendor/bin/phpunit -c ../phpunit.xml.dist
 ## License
 
 MIT – see [LICENSE](LICENSE).
+
+## ☕ Support
+
+If this project saves you work, I'd be happy about a coffee – voluntary, no support
+obligation, just a nice gesture:
+
+[![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
