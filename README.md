@@ -264,3 +264,19 @@ Wenn dir dieses Projekt Arbeit erspart, freue ich mich über einen Kaffee – fr
 Support-Anspruch, einfach eine nette Geste:
 
 [![Spendier mir einen Kaffee](https://img.shields.io/badge/☕_Spendier_mir_einen_Kaffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
+
+### Für Unternehmen: Unterstützung für die Weiterentwicklung
+
+Ihr setzt das Projekt im Betrieb ein und möchtet die Weiterentwicklung unterstützen? Gern auch
+**mit Rechnung** – einmalig oder **monatlich**. Auf Wunsch nenne ich euch hier unter
+„Unterstützer“ mit Firmenname und Link.
+
+Bitte beachtet: Ich bin kein Profi-Entwickler, das Projekt ist mein Hobby. Eine Unterstützung
+ist deshalb kein Supportvertrag – Support, Reaktionszeiten oder Gewährleistung kann ich nicht
+anbieten. Wünsche und Verbesserungsvorschläge nehme ich aber gerne mit auf.
+
+Kontakt: [info@francetec.de](mailto:info@francetec.de)
+
+#### Unterstützer
+
+*Noch keine – über euren Namen hier würde ich mich freuen.*
