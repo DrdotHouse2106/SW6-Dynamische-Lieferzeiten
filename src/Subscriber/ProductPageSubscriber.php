@@ -6,6 +6,7 @@ use DrDotHouse\MonthlyDelivery\Service\MonthlyDeliveryService;
 use DrDotHouse\MonthlyDelivery\Struct\DeliverySchedule;
 use Shopware\Core\Content\Product\ProductEntity;
 use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\System\SalesChannel\Entity\SalesChannelEntityLoadedEvent;
 use Shopware\Storefront\Page\Product\ProductPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -33,6 +34,9 @@ class ProductPageSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param SalesChannelEntityLoadedEvent<Entity> $event
+     */
     public function onProductsLoaded(SalesChannelEntityLoadedEvent $event): void
     {
         $products = array_filter(

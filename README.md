@@ -1,4 +1,4 @@
-# Dynamische Monats-Lieferzeiten für Shopware 6.6
+# Dynamische Monats-Lieferzeiten für Shopware 6.7
 
 [![Spendier mir einen Kaffee](https://img.shields.io/badge/☕_Spendier_mir_einen_Kaffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
 
@@ -22,6 +22,7 @@ Für **jeden Lieferanten kann eine eigene Regel** hinterlegt werden (Lieferprofi
 8. [HTTP-Cache](#8-http-cache)
 9. [Entwicklung und Tests](#9-entwicklung-und-tests)
 10. [Code-Struktur](#10-code-struktur)
+11. [Gestaltung (CSS-Klassen)](#11-gestaltung-css-klassen)
 
 ---
 
@@ -102,13 +103,17 @@ So können Sie das Profil einmal am Hersteller hinterlegen und es bei Bedarf an 
 
 Die Ausgabe selbst steckt im wiederverwendbaren Partial `@MonthlyDeliveryPlugin/storefront/component/monthly-delivery/info.html.twig`. Die Texte sind Textbausteine (`monthlyDelivery.*`) und lassen sich unter **Einstellungen → Textbausteine** anpassen.
 
-**Hinweis zu den genannten Templates:** In Shopware 6.6 liegt die Lieferzeit-Ausgabe nicht mehr in `buy-widget-form.html.twig`, sondern in `component/delivery-information.html.twig`. Dieses Template wird sowohl vom klassischen Buy-Widget als auch von der CMS-Buy-Box genutzt. Entsprechend werden die Warenkorb-Positionen in 6.6 über `component/line-item/*` statt über `cart-item-children.html.twig` gerendert.
+**Hinweis zu den genannten Templates:** Ab Shopware 6.6 (auch 6.7) liegt die Lieferzeit-Ausgabe nicht mehr in `buy-widget-form.html.twig`, sondern in `component/delivery-information.html.twig`. Dieses Template wird sowohl vom klassischen Buy-Widget als auch von der CMS-Buy-Box genutzt. Die Warenkorb-Positionen werden über `component/line-item/*` statt über `cart-item-children.html.twig` gerendert. Alle überschriebenen Templates und Blöcke sind gegen Shopware 6.7.15 geprüft.
+
+Digitale Produkte, inaktive Produkte, ausverkaufte Abverkaufsartikel und Vorbestellungen behalten auf der Produktseite die Standardanzeige. Die Microdata-Angabe `availability = BackOrder` wird – wie im Shopware-Original – nur ausgegeben, wenn strukturierte Daten nicht als JSON-LD erzeugt werden (Feature `JSON_LD_DATA`).
 
 ### Verfügbare Daten
 
 - Produkt: `product.extensions.monthlyDelivery`
 - Produktdetailseite zusätzlich: `page.extensions.monthlyDelivery`
 - Warenkorb- und Bestellpositionen: `lineItem.payload.monthlyDelivery`
+
+**Store-API (z. B. für eine App):** `monthlyDelivery` ist als Laufzeitfeld mit `ApiAware` an der Produkt-Definition registriert (`ProductMonthlyDeliveryExtension`). Dadurch steht es in allen Store-API-Antworten mit Produkten unter `extensions.monthlyDelivery` – Produktliste, Produktdetail, Suche, Listing, Cross-Selling. Ohne diese Registrierung entfernt Shopware unbekannte Extensions aus Store-API-Antworten. Das Feld wird nicht gespeichert und erzeugt keine Datenbankspalte. Warenkorb-Antworten enthalten den Termin wie bisher in `lineItems[].payload.monthlyDelivery`.
 
 Inhalt:
 
@@ -180,7 +185,7 @@ E-Mail-Vorlagen liegen in der Datenbank und werden deshalb nicht automatisch üb
 bin/console plugin:refresh
 bin/console plugin:install --activate MonthlyDeliveryPlugin
 
-# Admin-Modul (Lieferprofile) und Storefront bauen
+# Admin-Modul (Lieferprofile) und Storefront bauen – Voraussetzung: Shopware 6.7
 bin/build-administration.sh
 bin/build-storefront.sh   # optional, das Plugin bringt kein eigenes JS/SCSS für die Storefront mit
 
@@ -218,13 +223,15 @@ Wenn Sie ein Lieferprofil ändern, leeren Sie anschließend den Cache (**Einstel
 
 ## 9. Entwicklung und Tests
 
-Die Berechnungslogik wird ohne Shopware-Installation getestet:
+Die Berechnungslogik wird ohne Shopware-Installation getestet (PHPUnit 11):
 
 ```bash
 cd tests
 composer install
 vendor/bin/phpunit -c ../phpunit.xml.dist
 ```
+
+Ein Test sichert die Schlüssel ab, die die App aus `monthlyDelivery` liest (`testPayloadContainsAllKeysUsedByTheApp`).
 
 Innerhalb einer Shopware-Installation nutzt `tests/bootstrap.php` automatisch den Autoloader des Shops.
 
@@ -236,6 +243,7 @@ src/
 ├── MonthlyDeliveryPlugin.php                     Plugin-Klasse (Install/Update/Uninstall)
 ├── Checkout/Cart/MonthlyDeliveryCartProcessor.php  Termin → Line-Item-Payload (→ Bestellung)
 ├── Core/Content/DeliveryProfile/                 Entity „dmd_delivery_profile“ (Lieferprofile)
+├── Core/Content/Product/ProductMonthlyDeliveryExtension.php  Store-API-Feld „monthlyDelivery“ (Laufzeitfeld)
 ├── Migration/                                    Tabelle + Standardprofil
 ├── Service/
 │   ├── CustomFieldInstaller.php                  Zusatzfelder an Produkt und Hersteller
@@ -253,6 +261,22 @@ src/
     └── views/storefront/                         Twig-Overlays
 tests/Unit/DeliveryCalculatorServiceTest.php
 ```
+
+## 11. Gestaltung (CSS-Klassen)
+
+Das Plugin bringt kein eigenes CSS mit und nutzt Bootstrap-Hilfsklassen. Für die Gestaltung im Theme (z. B. Nova Theme) sind diese Klassen stabil:
+
+| Klasse | Element |
+|---|---|
+| `.monthly-delivery-info` | Container der Terminanzeige |
+| `.monthly-delivery-info--detail` / `--line-item` / `--listing` | Variante: Produktseite, Warenkorb-/Bestellposition, Produktkachel |
+| `.monthly-delivery-ship-date` | Zeile „Nächster fixer Versandtermin …“ (zusätzlich `.delivery-information`) |
+| `.monthly-delivery-deadline` | Zeile „Bestellschluss …“ |
+| `.monthly-delivery-profile` | Name des Lieferprofils (optional) |
+| `.line-item-monthly-delivery` | Wrapper an der Warenkorb-/Bestellposition |
+| `.monthly-delivery-summary` | Hinweisbox auf Bestätigungs- und Abschlussseite |
+
+Auf der Produktseite steckt die Anzeige zusätzlich in Shopwares `.product-delivery-information`.
 
 ## Lizenz
 

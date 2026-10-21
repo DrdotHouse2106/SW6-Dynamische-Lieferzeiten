@@ -11,6 +11,7 @@ use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
 use Shopware\Core\Framework\Plugin\Context\UpdateContext;
 use Shopware\Core\System\CustomField\Aggregate\CustomFieldSet\CustomFieldSetCollection;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MonthlyDeliveryPlugin extends Plugin
 {
@@ -47,7 +48,7 @@ class MonthlyDeliveryPlugin extends Plugin
         $this->getCustomFieldInstaller()->uninstall($uninstallContext->getContext());
 
         /** @var Connection $connection */
-        $connection = $this->container->get(Connection::class);
+        $connection = $this->getServiceContainer()->get(Connection::class);
         $connection->executeStatement('DROP TABLE IF EXISTS `dmd_delivery_profile`');
     }
 
@@ -56,10 +57,19 @@ class MonthlyDeliveryPlugin extends Plugin
         return false;
     }
 
+    private function getServiceContainer(): ContainerInterface
+    {
+        if ($this->container === null) {
+            throw new \RuntimeException('Der Service-Container ist nicht verfügbar.');
+        }
+
+        return $this->container;
+    }
+
     private function getCustomFieldInstaller(): CustomFieldInstaller
     {
         /** @var EntityRepository<CustomFieldSetCollection> $customFieldSetRepository */
-        $customFieldSetRepository = $this->container->get('custom_field_set.repository');
+        $customFieldSetRepository = $this->getServiceContainer()->get('custom_field_set.repository');
 
         return new CustomFieldInstaller($customFieldSetRepository);
     }

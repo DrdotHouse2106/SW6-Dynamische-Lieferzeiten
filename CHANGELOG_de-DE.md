@@ -1,3 +1,9 @@
+# 2.0.0
+- Shopware 6.7: Mindestversion jetzt 6.7 (Composer `~6.7.0`); alle Template-Overrides und Blöcke gegen Shopware 6.7.15 geprüft
+- Store-API: `monthlyDelivery` als Laufzeitfeld mit `ApiAware` an der Produkt-Definition registriert – der Termin steht jetzt in allen Store-API-Antworten mit Produkten (z. B. für die App) unter `extensions.monthlyDelivery`; vorher wurde die Extension von Shopware herausgefiltert
+- Produktseite: Microdata `availability` nur noch ohne JSON-LD (Feature `JSON_LD_DATA`), wie im Shopware-Original; digitale Produkte behalten die Standardanzeige
+- Technik: PHPStan Level 8 fehlerfrei, Test für die von der App genutzten Payload-Schlüssel
+
 # 1.0.1
 - Admin: ACL-Berechtigungen für Lieferprofile (Anzeigen/Bearbeiten/Anlegen/Löschen) unter Einstellungen → Rollen; das Modul ist damit auch für Rollen ohne Vollzugriff gezielt freigebbar
 

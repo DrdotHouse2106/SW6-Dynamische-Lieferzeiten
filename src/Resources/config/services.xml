@@ -10,6 +10,11 @@
         </service>
 
         <!-- Berechnung & Auflösung -->
+        <!-- Store-API: Extension „monthlyDelivery“ an Produkten ausgeben (Laufzeitfeld, wird nicht gespeichert) -->
+        <service id="DrDotHouse\MonthlyDelivery\Core\Content\Product\ProductMonthlyDeliveryExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
         <service id="DrDotHouse\MonthlyDelivery\Service\DeliveryCalculatorService" public="true"/>
 
         <service id="DrDotHouse\MonthlyDelivery\Service\DeliveryProfileResolver">

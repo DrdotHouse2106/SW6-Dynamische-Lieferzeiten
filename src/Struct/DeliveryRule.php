@@ -51,7 +51,7 @@ final class DeliveryRule
             throw new \InvalidArgumentException('Es dürfen nicht alle 12 Monate ausgeschlossen werden.');
         }
         foreach ($excludedMonths as $month) {
-            if (!\is_int($month) || $month < 1 || $month > 12) {
+            if ($month < 1 || $month > 12) {
                 throw new \InvalidArgumentException('excludedMonths darf nur Werte von 1 bis 12 enthalten.');
             }
         }

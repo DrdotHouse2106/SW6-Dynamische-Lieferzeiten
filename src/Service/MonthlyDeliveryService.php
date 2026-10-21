@@ -60,7 +60,7 @@ class MonthlyDeliveryService implements ResetInterface
         }
 
         foreach ($this->getSchedules($byId, $context) as $productId => $schedule) {
-            $byId[$productId]->addExtension(DeliverySchedule::KEY, new ArrayStruct($schedule->toArray()));
+            $byId[$productId]->addExtension(DeliverySchedule::KEY, new ArrayStruct($schedule->toArray(), 'monthly_delivery'));
         }
     }
 

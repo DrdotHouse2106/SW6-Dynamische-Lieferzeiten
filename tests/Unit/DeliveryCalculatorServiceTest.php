@@ -119,6 +119,23 @@ class DeliveryCalculatorServiceTest extends TestCase
         static::assertSame('2026-10-21T23:59:59+02:00', $data['deadline']);
     }
 
+    /**
+     * Vertrag mit der App und der Store-API: Diese Schlüssel liest die App
+     * (product.extensions.monthlyDelivery bzw. lineItem.payload.monthlyDelivery).
+     */
+    public function testPayloadContainsAllKeysUsedByTheApp(): void
+    {
+        $schedule = $this->calculator->calculate(new DeliveryRule(), new \DateTimeImmutable('2026-10-07 10:00:00', new \DateTimeZone('Europe/Berlin')));
+        $data = $schedule->toArray();
+
+        foreach (['profile', 'profileName', 'shipDate', 'shipDateFormatted', 'shipWeekday', 'deadline', 'deadlineFormatted', 'deadlineTime', 'deadlineWeekday', 'arrivalDateFormatted'] as $key) {
+            static::assertArrayHasKey($key, $data, $key);
+        }
+
+        static::assertSame('2026-11-02', $data['shipDate']);
+        static::assertSame('28.10.2026', $data['arrivalDateFormatted']);
+    }
+
     public function testParseExcludedMonths(): void
     {
         static::assertSame([8, 12], DeliveryRule::parseExcludedMonths(' 8, 12;13 abc 0 8'));

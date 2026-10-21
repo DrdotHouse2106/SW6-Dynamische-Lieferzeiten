@@ -1,4 +1,4 @@
-# Dynamic monthly delivery dates for Shopware 6.6
+# Dynamic monthly delivery dates for Shopware 6.7
 
 [![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
 
@@ -50,7 +50,7 @@ The custom fields accept the profile ID (admin selection) or its technical name 
 | Summary on confirm / finish page | `page/checkout/confirm/index.html.twig`, `page/checkout/finish/index.html.twig` |
 | Product listing (optional) | `component/product/card/box-standard.html.twig` |
 
-Data: `product.extensions.monthlyDelivery`, `page.extensions.monthlyDelivery` and `lineItem.payload.monthlyDelivery`. The payload is persisted to `order_line_item.payload`, so orders keep the date promised at order time. Email template snippets are in the German [README](README.md#5-e-mail-vorlagen).
+Data: `product.extensions.monthlyDelivery`, `page.extensions.monthlyDelivery` and `lineItem.payload.monthlyDelivery`. `monthlyDelivery` is registered as an `ApiAware` runtime field on the product definition, so it is included in all Store API product responses (e.g. for a mobile app); it is not persisted. All template overrides are checked against Shopware 6.7.15. CSS classes for theming: `.monthly-delivery-info` (`--detail`, `--line-item`, `--listing`), `.monthly-delivery-ship-date`, `.monthly-delivery-deadline`, `.monthly-delivery-profile`, `.line-item-monthly-delivery`, `.monthly-delivery-summary`. The payload is persisted to `order_line_item.payload`, so orders keep the date promised at order time. Email template snippets are in the German [README](README.md#5-e-mail-vorlagen).
 
 ## Installation
 
