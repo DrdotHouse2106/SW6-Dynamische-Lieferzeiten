@@ -57,7 +57,6 @@ Data: `product.extensions.monthlyDelivery`, `page.extensions.monthlyDelivery` an
 ```bash
 bin/console plugin:refresh
 bin/console plugin:install --activate MonthlyDeliveryPlugin
-bin/build-administration.sh
 bin/console cache:clear
 ```
 

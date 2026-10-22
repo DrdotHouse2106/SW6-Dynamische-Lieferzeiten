@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/monthlydeliveryplugin/administration/",
+  "entryPoints": {
+    "monthly-delivery-plugin": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/monthlydeliveryplugin/administration/assets/monthly-delivery-plugin-DyyyASaH.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

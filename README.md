@@ -185,12 +185,10 @@ E-Mail-Vorlagen liegen in der Datenbank und werden deshalb nicht automatisch üb
 bin/console plugin:refresh
 bin/console plugin:install --activate MonthlyDeliveryPlugin
 
-# Admin-Modul (Lieferprofile) und Storefront bauen – Voraussetzung: Shopware 6.7
-bin/build-administration.sh
-bin/build-storefront.sh   # optional, das Plugin bringt kein eigenes JS/SCSS für die Storefront mit
-
 bin/console cache:clear
 ```
+
+Das Admin-Modul (Lieferprofile) ist **fertig gebaut** enthalten (`src/Resources/public/administration`, gebaut mit Shopware 6.7.15) – kein `bin/build-administration.sh` nötig. Ein Neubau ist nur erforderlich, wenn die Quelltexte unter `src/Resources/app/administration` geändert werden. Alternativ kann das Plugin als ZIP über *Erweiterungen → Meine Erweiterungen → Erweiterung hochladen* installiert werden (`git archive --format=zip --prefix=MonthlyDeliveryPlugin/ -o MonthlyDeliveryPlugin.zip HEAD`).
 
 Danach:
 
