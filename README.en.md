@@ -70,6 +70,16 @@ Pages that show a fixed shipping date get their `s-maxage` limited to the earlie
 cd tests && composer install && vendor/bin/phpunit -c ../phpunit.xml.dist
 ```
 
+## Troubleshooting
+
+Known pitfalls from real installations. **Please add new ones** (or open an issue).
+
+- **"requires shopware/core ~6.6":** use version 2.0.0+ for Shopware 6.7.
+- **No date shown:** the product custom field `custom_supplier_monthly_delivery` must be true.
+- **Admin menu missing:** `bin/console assets:install`, `cache:clear`, reload the admin.
+- **Outdated date after profile change:** clear the HTTP cache.
+- **App shows no date:** requires 2.0.0 (Store API field).
+
 ## License
 
 MIT – see [LICENSE](LICENSE).

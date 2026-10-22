@@ -276,6 +276,21 @@ Das Plugin bringt kein eigenes CSS mit und nutzt Bootstrap-Hilfsklassen. Für di
 
 Auf der Produktseite steckt die Anzeige zusätzlich in Shopwares `.product-delivery-information`.
 
+## Häufige Probleme und Lösungen
+
+Hier sammeln wir Hürden, die bei Installation und Betrieb tatsächlich aufgetreten sind. **Neue Probleme bitte ergänzen** (oder als Issue melden), damit andere nicht lange suchen müssen.
+
+| Problem | Ursache | Lösung |
+|---|---|---|
+| Plugin lässt sich nicht installieren („requires shopware/core ~6.6“) | Version 1.x ist nur für Shopware 6.6 | Für Shopware 6.7 Version **2.0.0** oder neuer verwenden |
+| Kein Versandtermin beim Produkt | Plugin greift nur, wenn das Zusatzfeld `custom_supplier_monthly_delivery` am Produkt (bzw. Hauptprodukt) **aktiv** ist | Zusatzfeld im Produkt setzen (oder per WaWi). Profil über Produkt-, Hersteller- oder Standardprofil prüfen |
+| Abverkaufs-/Vorbestell-/inaktive Artikel zeigen die normale Lieferzeit | Gewollt: Für diese Fälle bleibt die Standardanzeige auf der Produktseite | – |
+| Admin-Menü „Monats-Lieferprofile“ fehlt | Assets nicht installiert oder Browser-Cache | `bin/console assets:install`, `bin/console cache:clear`, Administration neu laden. Die Admin-Dateien sind fertig gebaut enthalten |
+| Termin nach Profiländerung veraltet | Seiten liegen im HTTP-Cache | `bin/console cache:clear` |
+| App zeigt keinen Termin | Store-API liefert `extensions.monthlyDelivery` erst ab Version 2.0.0 | Plugin auf 2.0.0 aktualisieren; in der App muss `monthlyDelivery.enabled` gesetzt sein |
+| Datum in der falschen Zeitzone | Zeitzone in der Plugin-Konfiguration | Konfiguration → Zeitzone (Standard `Europe/Berlin`) |
+| WaWi überschreibt die Lieferzeit | Das Plugin liest/schreibt `deliveryTime`/`restockTime` absichtlich nicht | Gewollt – die Anzeige ersetzt nur die Darstellung in der Storefront |
+
 ## Lizenz
 
 MIT – siehe [LICENSE](LICENSE).
