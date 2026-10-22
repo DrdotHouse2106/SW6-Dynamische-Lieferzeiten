@@ -4,6 +4,7 @@
 # ergänzen, auf main pushen. Die Action erstellt dann den Tag v1.1.0, ein Release mit den
 # Changelog-Notizen und hängt das fertige ZIP für „Erweiterung hochladen“ an.
 # Gibt es den Tag schon, passiert nichts. Manuell starten: Actions → Release → Run workflow.
+# Hinweis: Bei privaten Repositories setzt GitHub Actions ein gültiges Zahlungsmittel bzw. Freikontingent voraus.
 name: Release
 
 on:
