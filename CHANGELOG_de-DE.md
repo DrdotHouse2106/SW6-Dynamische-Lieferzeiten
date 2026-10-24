@@ -1,3 +1,6 @@
+# 2.0.1
+- Neuer Anzeigename „Nova Lieferzeiten“ (technischer Name MonthlyDeliveryPlugin bleibt – keine Neuinstallation nötig)
+
 # 2.0.0
 - Shopware 6.7: Mindestversion jetzt 6.7 (Composer `~6.7.0`); alle Template-Overrides und Blöcke gegen Shopware 6.7.15 geprüft
 - Store-API: `monthlyDelivery` als Laufzeitfeld mit `ApiAware` an der Produkt-Definition registriert – der Termin steht jetzt in allen Store-API-Antworten mit Produkten (z. B. für die App) unter `extensions.monthlyDelivery`; vorher wurde die Extension von Shopware herausgefiltert

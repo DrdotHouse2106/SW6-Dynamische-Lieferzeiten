@@ -2,7 +2,7 @@
     "name": "drdothouse/sw6-monthly-delivery",
     "description": "Dynamische, monatliche Versand- und Bestellschluss-Termine je Lieferant für Shopware 6.7",
     "type": "shopware-platform-plugin",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "license": "MIT",
     "authors": [
         {
@@ -30,8 +30,8 @@
     "extra": {
         "shopware-plugin-class": "DrDotHouse\\MonthlyDelivery\\MonthlyDeliveryPlugin",
         "label": {
-            "de-DE": "Dynamische Monats-Lieferzeiten",
-            "en-GB": "Dynamic monthly delivery dates"
+            "de-DE": "Nova Lieferzeiten",
+            "en-GB": "Nova Delivery Dates"
         },
         "description": {
             "de-DE": "Berechnet je Lieferant den nächsten fixen Versandtermin und Bestellschluss und zeigt ihn auf Produktseite, im Warenkorb, im Checkout und in der Bestellung an – unabhängig von den WaWi-Feldern Lieferzeit und Wiederauffüllzeit.",

@@ -1,4 +1,4 @@
-# Dynamic monthly delivery dates for Shopware 6.7
+# Nova Delivery Dates – dynamic monthly delivery dates for Shopware 6.7
 
 [![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
 

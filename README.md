@@ -1,4 +1,4 @@
-# Dynamische Monats-Lieferzeiten für Shopware 6.7
+# Nova Lieferzeiten – dynamische Monats-Lieferzeiten für Shopware 6.7
 
 [![Spendier mir einen Kaffee](https://img.shields.io/badge/☕_Spendier_mir_einen_Kaffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
 
