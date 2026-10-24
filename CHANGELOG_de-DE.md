@@ -1,3 +1,7 @@
+# 2.0.2
+- Neues Plugin-Icon im Nova-Stil (Erweiterungen → Meine Erweiterungen)
+- Repository umbenannt in SW6-Nova-Lieferzeiten – alte Adresse leitet weiter
+
 # 2.0.1
 - Neuer Anzeigename „Nova Lieferzeiten“ (technischer Name MonthlyDeliveryPlugin bleibt – keine Neuinstallation nötig)
 

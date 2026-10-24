@@ -2,7 +2,7 @@
     "name": "drdothouse/sw6-monthly-delivery",
     "description": "Dynamische, monatliche Versand- und Bestellschluss-Termine je Lieferant für Shopware 6.7",
     "type": "shopware-platform-plugin",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "license": "MIT",
     "authors": [
         {
@@ -38,12 +38,12 @@
             "en-GB": "Calculates the next fixed shipping date and order deadline per supplier and shows it on the product page, in the cart, checkout and order – independent of the ERP-synced delivery time fields."
         },
         "manufacturerLink": {
-            "de-DE": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten",
-            "en-GB": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten"
+            "de-DE": "https://github.com/DrdotHouse2106/SW6-Nova-Lieferzeiten",
+            "en-GB": "https://github.com/DrdotHouse2106/SW6-Nova-Lieferzeiten"
         },
         "supportLink": {
-            "de-DE": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten/issues",
-            "en-GB": "https://github.com/DrdotHouse2106/SW6-Dynamische-Lieferzeiten/issues"
+            "de-DE": "https://github.com/DrdotHouse2106/SW6-Nova-Lieferzeiten/issues",
+            "en-GB": "https://github.com/DrdotHouse2106/SW6-Nova-Lieferzeiten/issues"
         }
     },
     "config": {
